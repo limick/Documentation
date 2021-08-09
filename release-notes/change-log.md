@@ -6,6 +6,21 @@ description: This article tracks the changes and updates to Upsolver.
 
 ## 2021
 
+### 2021/08/09
+
+* Enhancements
+  * CSV Content Format: allows repeating header names in files.
+  * Function changes: the * CONCAT function was changed to ARRAY_JOIN.
+    * ARRAY_JOIN - gets an array of strings and a delimiter and concats them.
+    * \* CONCAT - now gets multiple arguments and concats them (like || in SQL).
+
+* Bug Fixes
+  * Athena Output: fixed a performance issue when deleting files due to retention.
+  * Clusters: Show "Additional Processing Units for Replay" only in Compute Clusters.
+  * Redshift Spectrum: fixed boolean casting when running output with SELECT * 
+  * API: Show thrown errors from Hive Metastore.
+  * SQL: Fixed a bug when join with sub-query.
+
 ### 2021/08/02
  
 * Enhancements
