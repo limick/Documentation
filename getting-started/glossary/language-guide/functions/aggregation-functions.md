@@ -16,7 +16,7 @@ Use this function instead of `COUNT_DISTINCT` to improve performance, but only w
 
 ## `APPROX_COUNT_DISTINCT_EACH`
 
-TBA 
+The approximate count of distinct values per group in the time window.
 
 ## `AVG`
 
@@ -24,19 +24,19 @@ The average value in the time window.
 
 ## `AVG_EACH`
 
-TBA
+The average value in the time window grouped by the given key.
 
 ## `AVG_TIME_SERIES`
 
-TBA
+The average of the values per time interval.
 
 ## `COLLECT_SET`
 
-TBA
+A set of all values encountered in the time interval.
 
 ## `COLLECT_SET_EACH`
 
-TBA
+A set of all values encountered in the time interval grouped by the given key.
 
 ## `COUNT`
 
@@ -92,8 +92,7 @@ Using this aggregation with primary key `id` and `COUNT_DISTINCT(data)` produces
 
 ## `COUNT_EACH`
 
-TBA
-
+The number of items grouped the given key.
 
 ## `COUNT_IF`
 
@@ -189,11 +188,11 @@ The first array of values in the time window.
 
 ## `FIRST_EACH`
 
-TBD
+The first value per group.
 
 ## `FIRST_TIME_SERIES`
 
-TBD
+The first value per time interval.
 
 ## `LAST`
 
@@ -224,19 +223,19 @@ The last array of values in the time window.
 
 ## `LAST_EACH`
 
-TBD
+The last value per group.
 
 ## `LAST_K`
 
-TBD
+The last `k` values.
 
 ## `LAST_K_EACH`
 
-TBD
+The last `k` values per group.
 
 ## `LAST_TIME_SERIES`
 
-TBD
+The last value per interval.
 
 ## `MAX`
 
@@ -267,11 +266,11 @@ TBA
 
 ## `MAX_EACH`
 
-TBA
+The maximum value per group.
 
 ## `MAX_TIME_SERIES`
 
-TBA
+The maximum value per time interval.
 
 ## `MIN`
 
@@ -301,11 +300,11 @@ TBA
 
 ## `MIN_EACH`
 
-TBA
+The minimum value per group.
 
 ## `MIN_TIME_SERIES`
 
-TBA
+The minimum value per time interval.
 
 ## `SESSION_COUNT`
 
@@ -340,7 +339,7 @@ The standard deviation of values in the time window.
 
 ## `STD_DEV_EACH`
 
-TBD
+The standard deviation of the value per group.
 
 ## `STRING_MAX`
 
@@ -383,11 +382,11 @@ Using this aggregation with primary key `id` and `SUM(data)` produces the follow
 
 ## `SUM_EACH`
 
-TBD
+The sum of the values per group.
 
 ## `SUM_TIME_SERIES`
 
-TBD
+The sum of the values per time interval.
 
 ## `WEIGHTED_AVERAGE`
 
