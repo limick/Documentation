@@ -99,6 +99,52 @@ TBA
 
 The number of `true` values in the time window.
 
+#### Syntax
+
+```sql
+COUNT_IF (expr) 
+```
+
+#### Arguments
+
+ * `expr`: a BOOLEAN  expression that can be either a calculated 
+   field or a column from the data streams
+
+#### Returns
+
+INT
+
+#### Example
+
+_Contents of Data Stream:_
+```sql
+{"type": "event","id": "1", data" : "sample data", "extendeddata": "apple"}
+{"type": "event","id": "2", data" : "sample data", "extendeddata": "watermelon"}
+{"type": "event","id": "3", data" : "sample data", "extendeddata": "cucumber"}
+{"type": "event","id": "4", data" : "sample data", "extendeddata": "Strawberry"}
+```
+
+_Query:_
+```sql
+SELECT type,
+COUNT_IF(data = 'sample data') as data,
+COUNT_IF(data = 'sample data' AND extendeddata='apple') as apples
+  FROM stream
+GROUP BY type
+```
+
+_Results:_
+
+| type| data | apples |
+| :--- | :--- | :--- |
+| event | 4 | 1 |
+
+####  Related Functions
+
+* [COUNT](https://docs.upsolver.com/upsolver-1/getting-started/glossary/language-guide/functions/aggregation-functions#count)
+* [COUNT(\*)](https://docs.upsolver.com/upsolver-1/getting-started/glossary/language-guide/functions/aggregation-functions#count-1)
+* [COUNT_DISTINCT](https://docs.upsolver.com/upsolver-1/getting-started/glossary/language-guide/functions/aggregation-functions#count_distinct)
+* [COUNT_EACH](https://docs.upsolver.com/upsolver-1/getting-started/glossary/language-guide/functions/aggregation-functions#count_each)
 
 ## `DECAYED_SUM`
 
