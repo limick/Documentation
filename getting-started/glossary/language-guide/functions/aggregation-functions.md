@@ -8,9 +8,35 @@ Aggregations are functions for grouping multiple events together to form a more 
 
 Unlike databases, Upsolver runs continuous queries and not ad-hoc queries. Therefore, aggregation results are incrementally updated with every incoming event, and aggregation functions require windowing to split a stream into buckets of data that can be aggregated.
 
-## `COUNT(*)`
+## `APPROX_COUNT_DISTINCT`
 
-The number of items in the time window.
+The approximate number of distinct values in the time window. 
+
+Use this function instead of `COUNT_DISTINCT` to improve performance, but only when there are not many \(under 1M\) rows in the result.
+
+## `APPROX_COUNT_DISTINCT_EACH`
+
+TBA 
+
+## `AVG`
+
+The average value in the time window.
+
+## `AVG_EACH`
+
+TBA
+
+## `AVG_TIME_SERIES`
+
+TBA
+
+## `COLLECT_SET`
+
+TBA
+
+## `COLLECT_SET_EACH`
+
+TBA
 
 ## `COUNT`
 
@@ -35,9 +61,9 @@ Using this aggregation with primary key `id` and `COUNT(data)` produces the foll
 | 2 | 1 |
 | 3 | 1 |
 
-## `COUNT_IF`
+## `COUNT(*)`
 
-The number of `true` values in the time window.
+The number of items in the time window.
 
 ## `COUNT_DISTINCT`
 
@@ -63,121 +89,30 @@ Using this aggregation with primary key `id` and `COUNT_DISTINCT(data)` produces
 | 2 | 1 |
 | 3 | 1 |
 
-## `STRING_MAX`
 
-The maximum string value in the time window sorted case-sensitive lexicographically.
+## `COUNT_EACH`
 
-## `STRING_MIN`
+TBA
 
-The minimum string value in the time window sorted case-sensitive lexicographically.
 
-## `MAX`
+## `COUNT_IF`
 
-The maximum value in the time window.
+The number of `true` values in the time window.
 
-#### Example:
 
-For the following stream of events:
+## `DECAYED_SUM`
 
-```sql
-{"id": "1", "data": 2}
-{"id": "1", "data": 3}
-{"id": "2", "data": 5}
-{"id": "3", "data": 8}
-```
+Performs a sum on the value and decays that sum based on the decay factor and how old the original data is.
 
-Using this aggregation with primary key `id` and `MAX(data)` produces the following data:
-
-| Primary Key `id` | `MAX(data)` |
-| :--- | :--- |
-| 1 | 3 |
-| 2 | 5 |
-| 3 | 8 |
-
-## `MIN`
-
-The minimum value in the time window.
-
-#### Example:
-
-For the following stream of events:
-
-```sql
-{"id": "1", "data": 2}
-{"id": "1", "data": 3}
-{"id": "2", "data": 5}
-{"id": "3", "data": 8}
-```
-
-Using this aggregation with primary key `id` and `MIN(data)` produces the following data:
-
-| Primary Key `id` | `MIN(data)` |
-| :--- | :--- |
-| 1 | 2 |
-| 2 | 5 |
-| 3 | 8 |
-
-## `SUM`
-
-The sum of the values in the time window.
-
-#### Example:
-
-For the following stream of events:
-
-```sql
-{"id": "1", "data": 2}
-{"id": "1", "data": 3}
-{"id": "2", "data": 5}
-{"id": "3", "data": 8}
-```
-
-Using this aggregation with primary key `id` and `SUM(data)` produces the following data:
-
-| Primary Key `id` | `SUM(data)` |
-| :--- | :--- |
-| 1 | 5 |
-| 2 | 5 |
-| 3 | 8 |
-
-## `AVG`
-
-The average value in the time window.
 
 ## `DELETE`
 
 Delete the record when this is set.
 
-## `STD_DEV`
+## `DYNAMIC_SESSIONS`
 
-The standard deviation of values in the time window.
+TBA
 
-## `LAST`
-
-The last value in the time window.
-
-#### Example:
-
-For the following stream of events:
-
-```sql
-{"id": "1", "data": 3}
-{"id": "1", "data": 2}
-{"id": "2", "data": 5}
-{"id": "3", "data": 8}
-```
-
-Using this aggregation with primary key `id` and `LAST(data)` produces the following data:
-
-| Primary Key `id` | `LAST(data)` |
-| :--- | :--- |
-| 1 | 2 |
-| 2 | 5 |
-| 3 | 8 |
-
-## `LAST_ARRAY`
-
-The last array of values in the time window.
 
 ## `FIRST`
 
@@ -206,15 +141,125 @@ Using this aggregation with primary key `id` and `SUM(data)` produces the follow
 
 The first array of values in the time window.
 
-## `APPROX_COUNT_DISTINCT`
+## `FIRST_EACH`
 
-The approximate number of distinct values in the time window. 
+TBD
 
-Use this function instead of `COUNT_DISTINCT` to improve performance, but only when there are not many \(under 1M\) rows in the result.
+## `FIRST_TIME_SERIES`
 
-## `GRAPH`
+TBD
 
-Stores the max/min/avg/sum/last of the values per time interval.
+## `LAST`
+
+The last value in the time window.
+
+#### Example:
+
+For the following stream of events:
+
+```sql
+{"id": "1", "data": 3}
+{"id": "1", "data": 2}
+{"id": "2", "data": 5}
+{"id": "3", "data": 8}
+```
+
+Using this aggregation with primary key `id` and `LAST(data)` produces the following data:
+
+| Primary Key `id` | `LAST(data)` |
+| :--- | :--- |
+| 1 | 2 |
+| 2 | 5 |
+| 3 | 8 |
+
+## `LAST_ARRAY`
+
+The last array of values in the time window.
+
+## `LAST_EACH`
+
+TBD
+
+## `LAST_K`
+
+TBD
+
+## `LAST_K_EACH`
+
+TBD
+
+## `LAST_TIME_SERIES`
+
+TBD
+
+## `MAX`
+
+The maximum value in the time window.
+
+#### Example:
+
+For the following stream of events:
+
+```sql
+{"id": "1", "data": 2}
+{"id": "1", "data": 3}
+{"id": "2", "data": 5}
+{"id": "3", "data": 8}
+```
+
+Using this aggregation with primary key `id` and `MAX(data)` produces the following data:
+
+| Primary Key `id` | `MAX(data)` |
+| :--- | :--- |
+| 1 | 3 |
+| 2 | 5 |
+| 3 | 8 |
+
+## `MAX_BY`
+
+TBA
+
+## `MAX_EACH`
+
+TBA
+
+## `MAX_TIME_SERIES`
+
+TBA
+
+## `MIN`
+
+The minimum value in the time window.
+
+#### Example:
+
+For the following stream of events:
+
+```sql
+{"id": "1", "data": 2}
+{"id": "1", "data": 3}
+{"id": "2", "data": 5}
+{"id": "3", "data": 8}
+```
+
+Using this aggregation with primary key `id` and `MIN(data)` produces the following data:
+
+| Primary Key `id` | `MIN(data)` |
+| :--- | :--- |
+| 1 | 2 |
+| 2 | 5 |
+
+## `MIN_BY`
+
+TBA
+
+## `MIN_EACH`
+
+TBA
+
+## `MIN_TIME_SERIES`
+
+TBA
 
 ## `SESSION_COUNT`
 
@@ -243,11 +288,61 @@ Using this aggregation with primary key `id` and `SESSION_COUNT(time, 2)` will p
 
 With `SESSION_COUNT(time, 2)`, a session is defined as a distance between two events of up to or including 2. Thus, 1, 2, and 4 are one session and 7 is the second session.
 
+## `STD_DEV`
+
+The standard deviation of values in the time window.
+
+## `STD_DEV_EACH`
+
+TBD
+
+## `STRING_MAX`
+
+The maximum string value in the time window sorted case-sensitive lexicographically.
+
+## `STRING_MAX_EACH`
+
+TBD
+
+## `STRING_MIN`
+
+The minimum string value in the time window sorted case-sensitive lexicographically.
+
+## `STRING_MIN_EACH`
+
+TBD 
+
+## `SUM`
+
+The sum of the values in the time window.
+
+#### Example:
+
+For the following stream of events:
+
+```sql
+{"id": "1", "data": 2}
+{"id": "1", "data": 3}
+{"id": "2", "data": 5}
+{"id": "3", "data": 8}
+```
+
+Using this aggregation with primary key `id` and `SUM(data)` produces the following data:
+
+| Primary Key `id` | `SUM(data)` |
+| :--- | :--- |
+| 1 | 5 |
+| 2 | 5 |
+| 3 | 8 |
+
+## `SUM_EACH`
+
+TBD
+
+## `SUM_TIME_SERIES`
+
+TBD
+
 ## `WEIGHTED_AVERAGE`
 
 The weighted average of a value in the time window.
-
-## `DECAYED_SUM`
-
-Performs a sum on the value and decays that sum based on the decay factor and how old the original data is.
-
